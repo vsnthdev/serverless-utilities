@@ -4,19 +4,18 @@
  *  Created On 15 June 2022
  */
 
-import { VercelRequest, VercelResponse } from '@vercel/node'
-import { notFound } from '../notFound/index'
+import { Request, Response, notFound } from '../notFound/index.js'
 
 interface Methods {
-    get?: (req: VercelRequest, res: VercelResponse) => Promise<any>
-    head?: (req: VercelRequest, res: VercelResponse) => Promise<any>
-    post?: (req: VercelRequest, res: VercelResponse) => Promise<any>
-    put?: (req: VercelRequest, res: VercelResponse) => Promise<any>
-    delete?: (req: VercelRequest, res: VercelResponse) => Promise<any>
-    connect?: (req: VercelRequest, res: VercelResponse) => Promise<any>
-    options?: (req: VercelRequest, res: VercelResponse) => Promise<any>
-    trace?: (req: VercelRequest, res: VercelResponse) => Promise<any>
-    patch?: (req: VercelRequest, res: VercelResponse) => Promise<any>
+    get?: (req: Request, res: Response) => Promise<any>
+    head?: (req: Request, res: Response) => Promise<any>
+    post?: (req: Request, res: Response) => Promise<any>
+    put?: (req: Request, res: Response) => Promise<any>
+    delete?: (req: Request, res: Response) => Promise<any>
+    connect?: (req: Request, res: Response) => Promise<any>
+    options?: (req: Request, res: Response) => Promise<any>
+    trace?: (req: Request, res: Response) => Promise<any>
+    patch?: (req: Request, res: Response) => Promise<any>
 }
 
 /**
@@ -25,7 +24,7 @@ interface Methods {
  * @param res The HTTP response to which we'll respond.
  * @param methods Functions mapped to different HTTP request methods.
  */
-export const methods = (req: VercelRequest, res: VercelResponse, methods: Methods) => {
+export const methods = (req: Request, res: Response, methods: Methods) => {
     // a method always exists, so we cast it into a string
     const method = req.method?.toLowerCase() as "get" | "head" | "post" | "put" | "delete" | "connect" | "options" | "trace" | "patch"
 

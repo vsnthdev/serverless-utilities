@@ -30,11 +30,14 @@
         "build": "tsc -b --clean && tsc -b -i -f"
     },
     "devDependencies": {
+        "@types/react": "^18.0.12",
+        "@types/react-dom": "^18.0.5",
         "@vercel/build-utils": "^4.1.0",
         "@vercel/frameworks": "^1.0.1",
         "@vercel/node": "^2.1.0",
         "@vercel/routing-utils": "^1.13.4",
         "glob": "^8.0.3",
+        "next": "^12.1.6",
         "typescript": "^4.7.3"
     }
 }
