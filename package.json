@@ -1,0 +1,35 @@
+{
+    "name": "serverless-utilities",
+    "description": "Handy 🛠️ utility functions for ⚡ serverless functions.",
+    "version": "0.0.0",
+    "license": "Zlib",
+    "main": "dest/index.js",
+    "type": "module",
+    "engineStrict": true,
+    "homepage": "https://github.com/vsnthdev/serverless-utilities#readme",
+    "bugs": "https://github.com/vsnthdev/serverless-utilities/issues",
+    "author": {
+        "name": "Vasanth Developer",
+        "email": "vasanth@vasanthdeveloper.com",
+        "url": "https://vsnth.dev"
+    },
+    "engines": {
+        "node": ">=16.x"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/vsnthdev/serverless-utilities.git"
+    },
+    "keywords": [
+        "serverless",
+        "functions",
+        "lamda"
+    ],
+    "scripts": {
+        "start": "tsc -w",
+        "build": "tsc -b --clean && tsc -b -i -f"
+    },
+    "devDependencies": {
+        "typescript": "^4.7.3"
+    }
+}
