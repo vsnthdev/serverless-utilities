@@ -19,6 +19,12 @@ interface Methods {
     patch?: (req: VercelRequest, res: VercelResponse) => Promise<any>
 }
 
+/**
+ * A utility function that provides support to supply different functions for different HTTP request methods.
+ * @param req The HTTP request.
+ * @param res The HTTP response to which we'll respond.
+ * @param methods Functions mapped to different HTTP request methods.
+ */
 export const methods = (req: VercelRequest, res: VercelResponse, methods: Methods) => {
     // a method always exists, so we cast it into a string
     const method = req.method?.toLowerCase() as "get" | "head" | "post" | "put" | "delete" | "connect" | "options" | "trace" | "patch"
