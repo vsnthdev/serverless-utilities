@@ -3,4 +3,5 @@
  *  Created On 15 June 2022
  */
 
-console.log('hello 👋')
+export { methods } from './method/index'
+export { notFound } from './notFound/index'

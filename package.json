@@ -1,6 +1,6 @@
 {
     "name": "serverless-utilities",
-    "description": "Handy 🛠️ utility functions for ⚡ serverless functions.",
+    "description": "Handy 🛠️ utility functions for Vercel ⚡ serverless functions.",
     "version": "0.0.0",
     "license": "Zlib",
     "main": "dest/index.js",
@@ -30,6 +30,7 @@
         "build": "tsc -b --clean && tsc -b -i -f"
     },
     "devDependencies": {
+        "@vercel/node": "^2.1.0",
         "typescript": "^4.7.3"
     }
 }
