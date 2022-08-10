@@ -29,6 +29,9 @@
         "start": "tsc -w",
         "build": "tsc -b --clean && tsc -b -i -f"
     },
+    "peerDependencies": {
+        "joi": "^17"
+    },
     "devDependencies": {
         "@types/react": "^18.0.12",
         "@types/react-dom": "^18.0.5",
