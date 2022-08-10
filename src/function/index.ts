@@ -3,8 +3,8 @@
  *  Created On 11 August 2022
  */
 
-import { FunctionConfig, RouteConfig } from '../interface'
-import { notFound } from '../notFound/index'
+import { FunctionConfig, RouteConfig } from '../interface.js'
+import { notFound } from '../notFound/index.js'
 
 import { VercelRequest, VercelResponse } from '@vercel/node'
 import { NextApiRequest, NextApiResponse } from 'next'
