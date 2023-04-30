@@ -1,0 +1,27 @@
+{
+    "name": "serverless-utilities",
+    "description": "Handy 🛠️ utility functions for Vercel ⚡ serverless functions.",
+    "type": "module",
+    "license": "Zlib",
+    "version": "0.0.5",
+    "main": "dist/index.js",
+    "bugs": "https://github.com/vsnthdev/serverless-utilities/issues",
+    "homepage": "https://github.com/vsnthdev/serverless-utilities#readme",
+    "author": {
+        "name": "Vasanth Srivatsa",
+        "email": "hey@vsnth.dev",
+        "url": "https://vsnth.dev"
+    },
+    "engines": {
+        "node": ">=18.x"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/vsnthdev/serverless-utilities.git"
+    },
+    "keywords": [
+        "serverless",
+        "functions",
+        "lamda"
+    ]
+}
