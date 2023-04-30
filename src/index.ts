@@ -3,4 +3,5 @@
  *  Created On 30 April 2023
  */
 
-console.log('hello world')
+export { func } from './function'
+export { notFound } from './notFound'
