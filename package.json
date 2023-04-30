@@ -2,7 +2,7 @@
     "name": "serverless-utilities",
     "description": "Handy 🛠️ utility functions for Vercel ⚡ serverless functions.",
     "type": "module",
-    "license": "Zlib",
+    "license": "zlib",
     "version": "0.0.5",
     "main": "dist/index.js",
     "bugs": "https://github.com/vsnthdev/serverless-utilities/issues",
@@ -23,5 +23,13 @@
         "serverless",
         "functions",
         "lamda"
-    ]
+    ],
+    "scripts": {
+        "dev": "rimraf dest && tsc -w",
+        "build": "rimraf dest && tsc -b"
+    },
+    "devDependencies": {
+        "rimraf": "^5.0.0",
+        "typescript": "^5.0.4"
+    }
 }
