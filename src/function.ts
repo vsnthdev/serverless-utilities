@@ -35,12 +35,12 @@ async function validate(req: Request, res: Response, route: RouteConfig) {
     if (route.validation) {
         if (route.validation.query) {
             try {
-                req.query = await (route.validation.query as any).validateAsync(req.query)
+                req.query = await route.validation.query.parse(req.query)
             } catch (err) {
                 res.status(400).json({
                     error: true,
                     message: 'Invalid query parameters',
-                    data: (err as any).details[0]
+                    data: {}
                 })
 
                 return false
@@ -49,12 +49,12 @@ async function validate(req: Request, res: Response, route: RouteConfig) {
 
         if (route.validation.body) {
             try {
-                req.body = await (route.validation.body as any).validateAsync(req.body)
+                req.body = route.validation.body.parse(req.body)
             } catch (err) {
                 res.status(400).json({
                     error: true,
                     message: 'Invalid request body',
-                    data: (err as any).details[0]
+                    data: {}
                 })
 
                 return false

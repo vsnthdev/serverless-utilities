@@ -26,7 +26,8 @@
     ],
     "scripts": {
         "dev": "rimraf dest && tsc -w",
-        "build": "rimraf dest && tsc -b"
+        "build": "rimraf dest && tsc -b",
+        "clean": "rimraf dist"
     },
     "devDependencies": {
         "@vercel/node": "^2.14.0",
