@@ -9,9 +9,10 @@ export interface GenericResponse {
 }
 
 export interface GenericRequest {
-    method: any
-    query: any
     body: any
+    query: any
+    method: any
+    cookies: any
 }
 
 /**
