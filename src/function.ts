@@ -5,10 +5,10 @@
  */
 
 import type { ZodObject } from 'zod'
-import { Request, Response, notFound } from './notFound'
+import { type GenericRequest, type GenericResponse, notFound } from './notFound'
 
 export interface RouteConfig {
-    handler: (req: Request, res: Response) => Promise<any>
+    handler: (req: GenericRequest, res: GenericResponse) => Promise<any>
     validation?: {
         params?: ZodObject<any>
         query?: ZodObject<any>
@@ -30,7 +30,7 @@ export interface FunctionConfig {
 
 export type RequestMethod = "get" | "head" | "post" | "put" | "delete" | "connect" | "options" | "trace" | "patch"
 
-async function validate(req: Request, res: Response, route: RouteConfig) {
+async function validate<Request extends GenericRequest, Response extends GenericResponse>(req: Request, res: Response, route: RouteConfig) {
     // validate route
     if (route.validation) {
         if (route.validation.query) {
@@ -68,7 +68,7 @@ async function validate(req: Request, res: Response, route: RouteConfig) {
 /** A helpful utility function that wraps around your
  * serverless function to make it easy to use.
  */
-export async function func(req: Request, res: Response, config: FunctionConfig) {
+export async function func<Request extends GenericRequest, Response extends GenericResponse>(req: Request, res: Response, config: FunctionConfig) {
     // get current request method
     const method = req.method.toLowerCase() as RequestMethod
 
@@ -80,7 +80,7 @@ export async function func(req: Request, res: Response, config: FunctionConfig) 
     if (!route) return notFound(req, res)
 
     // validate all the different parameters
-    if (await validate(req, res, route)) {
+    if (await validate<Request, Response>(req, res, route)) {
         // finally execute the handler function
         return route.handler(req, res)
     }
