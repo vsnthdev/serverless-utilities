@@ -3,7 +3,7 @@
     "description": "Handy 🛠️ utility functions for Vercel ⚡ serverless functions.",
     "type": "module",
     "license": "zlib",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "main": "dist/index.js",
     "bugs": "https://github.com/vsnthdev/serverless-utilities/issues",
     "homepage": "https://github.com/vsnthdev/serverless-utilities#readme",
@@ -30,7 +30,6 @@
         "clean": "rimraf dist"
     },
     "devDependencies": {
-        "@vercel/node": "^2.14.0",
         "rimraf": "^5.0.0",
         "typescript": "^5.0.4",
         "zod": "^3.21.4"
