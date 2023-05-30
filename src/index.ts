@@ -3,5 +3,5 @@
  *  Created On 30 April 2023
  */
 
-export { func } from './function'
-export { notFound } from './notFound'
+export { func } from './function.js'
+export { notFound } from './notFound.js'

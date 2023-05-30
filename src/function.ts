@@ -5,7 +5,7 @@
  */
 
 import type { ZodObject } from 'zod'
-import { notFound } from './notFound'
+import { notFound } from './notFound.js'
 import { VercelRequest, VercelResponse } from '@vercel/node'
 
 export interface RouteConfig {
