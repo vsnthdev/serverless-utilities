@@ -5,10 +5,11 @@
  */
 
 import type { ZodObject } from 'zod'
-import { type GenericRequest, type GenericResponse, notFound } from './notFound'
+import { notFound } from './notFound'
+import { VercelRequest, VercelResponse } from '@vercel/node'
 
 export interface RouteConfig {
-    handler: (req: GenericRequest, res: GenericResponse) => Promise<any>
+    handler: (req: VercelRequest, res: VercelResponse) => Promise<any>
     validation?: {
         params?: ZodObject<any>
         query?: ZodObject<any>
@@ -30,7 +31,7 @@ export interface FunctionConfig {
 
 export type RequestMethod = "get" | "head" | "post" | "put" | "delete" | "connect" | "options" | "trace" | "patch"
 
-async function validate<Request extends GenericRequest, Response extends GenericResponse>(req: Request, res: Response, route: RouteConfig) {
+async function validate(req: VercelRequest, res: VercelResponse, route: RouteConfig) {
     // validate route
     if (route.validation) {
         if (route.validation.query) {
@@ -68,7 +69,7 @@ async function validate<Request extends GenericRequest, Response extends Generic
 /** A helpful utility function that wraps around your
  * serverless function to make it easy to use.
  */
-export async function func<Request extends GenericRequest, Response extends GenericResponse>(req: Request, res: Response, config: FunctionConfig) {
+export async function func(req: VercelRequest, res: VercelResponse, config: FunctionConfig) {
     // get current request method
     const method = req.method.toLowerCase() as RequestMethod
 
@@ -80,7 +81,7 @@ export async function func<Request extends GenericRequest, Response extends Gene
     if (!route) return notFound(req, res)
 
     // validate all the different parameters
-    if (await validate<Request, Response>(req, res, route)) {
+    if (await validate(req, res, route)) {
         // finally execute the handler function
         return route.handler(req, res)
     }

@@ -4,21 +4,12 @@
  *  Created On 30 April 2023
  */
 
-export interface GenericResponse {
-    status: any
-}
-
-export interface GenericRequest {
-    body: any
-    query: any
-    method: any
-    cookies: any
-}
+import { VercelRequest, VercelResponse } from '@vercel/node'
 
 /**
  * A function that sends a 404 not found response.
 */
-export function notFound<Request, Response extends GenericResponse>(_: Request, res: Response) {
+export function notFound(_: VercelRequest, res: VercelResponse) {
     return res.status(404).json({
         error: false,
         message: 'Not found',
