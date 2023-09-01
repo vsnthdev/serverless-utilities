@@ -38,9 +38,11 @@ async function validate(req: VercelRequest, res: VercelResponse, route: RouteCon
             try {
                 req.query = await route.validation.query.parse(req.query)
             } catch (err) {
+                console.log(err)
+
                 res.status(400).json({
                     error: true,
-                    message: 'Invalid query parameters',
+                    message: err,
                     data: {}
                 })
 
@@ -52,9 +54,11 @@ async function validate(req: VercelRequest, res: VercelResponse, route: RouteCon
             try {
                 req.body = route.validation.body.parse(req.body)
             } catch (err) {
+                console.log(err)
+
                 res.status(400).json({
                     error: true,
-                    message: 'Invalid request body',
+                    message: err,
                     data: {}
                 })
 
