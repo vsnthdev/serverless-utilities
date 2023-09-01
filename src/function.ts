@@ -42,7 +42,7 @@ async function validate(req: VercelRequest, res: VercelResponse, route: RouteCon
 
                 res.status(400).json({
                     error: true,
-                    message: err,
+                    message: err.issues[0].message,
                     data: {}
                 })
 
@@ -58,7 +58,7 @@ async function validate(req: VercelRequest, res: VercelResponse, route: RouteCon
 
                 res.status(400).json({
                     error: true,
-                    message: err,
+                    message: err.issues[0].message,
                     data: {}
                 })
 
