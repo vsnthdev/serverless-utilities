@@ -96,7 +96,7 @@ export async function func(req: VercelRequest, res: VercelResponse, config: Func
         res.setHeader('Access-Control-Allow-Headers', config.cors.allowedHeaders.join(', '))
     }
 
-    if (config.cors.allowedMethods) {
+    if (config.cors?.allowedMethods) {
         res.setHeader('Access-Control-Allow-Methods', config.cors.allowedMethods.join(',').toUpperCase())
     }
 
