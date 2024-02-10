@@ -96,10 +96,6 @@ export function func(config: FunctionConfig) {
 
             if (config.cors.allowedHeaders) {
                 res.setHeader('Access-Control-Allow-Headers', config.cors.allowedHeaders.join(', '))
-            } else {
-                if (config.cors) {
-                    res.setHeader('Access-Control-Allow-Headers', '')
-                }
             }
 
             if (config.cors.allowedMethods) {
@@ -117,11 +113,13 @@ export function func(config: FunctionConfig) {
         }
 
         // handle caching
-        if (config.caching?.sharedCacheSeconds) {
-            res.setHeader(
-                'Cache-Control',
-                `max-age=0, s-maxage=${config.caching.sharedCacheSeconds}, stale-while-revalidate`,
-            )
+        if (config.caching) {
+            if (config.caching.sharedCacheSeconds) {
+                res.setHeader(
+                    'Cache-Control',
+                    `max-age=0, s-maxage=${config.caching.sharedCacheSeconds}, stale-while-revalidate`,
+                )
+            }
         }
 
         // grab the function that has been mapped to
