@@ -84,7 +84,7 @@ async function validate(req: VercelRequest, res: VercelResponse, route: RouteCon
 /** A helpful utility function that wraps around your
  * serverless function to make it easy to use.
  */
-export async function func(config: FunctionConfig) {
+export function func(config: FunctionConfig) {
     return async (req: VercelRequest, res: VercelResponse) => {
         // get current request method
         const method = req.method.toLowerCase() as RequestMethod
