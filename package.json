@@ -30,9 +30,9 @@
         "clean": "rimraf dist"
     },
     "devDependencies": {
-        "@vercel/node": "^3.0.9",
+        "@vercel/node": "^3.0.18",
         "rimraf": "^5.0.5",
-        "typescript": "^5.2.2",
+        "typescript": "^5.3.3",
         "zod": "^3.22.4"
     }
 }
