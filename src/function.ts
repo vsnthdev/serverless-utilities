@@ -84,53 +84,55 @@ async function validate(req: VercelRequest, res: VercelResponse, route: RouteCon
 /** A helpful utility function that wraps around your
  * serverless function to make it easy to use.
  */
-export async function func(req: VercelRequest, res: VercelResponse, config: FunctionConfig) {
-    // get current request method
-    const method = req.method.toLowerCase() as RequestMethod
+export async function func(config: FunctionConfig) {
+    return async (req: VercelRequest, res: VercelResponse) => {
+        // get current request method
+        const method = req.method.toLowerCase() as RequestMethod
 
-    if (config.cors?.allowCredentials) {
-        res.setHeader('Access-Control-Allow-Credentials', 'true')
-    }
-
-    if (config.cors?.allowedHeaders) {
-        res.setHeader('Access-Control-Allow-Headers', config.cors.allowedHeaders.join(', '))
-    } else {
-        if (config.cors) {
-            res.setHeader('Access-Control-Allow-Headers', '')
+        if (config.cors?.allowCredentials) {
+            res.setHeader('Access-Control-Allow-Credentials', 'true')
         }
-    }
 
-    if (config.cors?.allowedMethods) {
-        res.setHeader('Access-Control-Allow-Methods', config.cors.allowedMethods.join(',').toUpperCase())
-    }
+        if (config.cors?.allowedHeaders) {
+            res.setHeader('Access-Control-Allow-Headers', config.cors.allowedHeaders.join(', '))
+        } else {
+            if (config.cors) {
+                res.setHeader('Access-Control-Allow-Headers', '')
+            }
+        }
 
-    if (config.cors?.allowedOrigin) {
-        res.setHeader('Access-Control-Allow-Origin', config.cors.allowedOrigin)
-    }
+        if (config.cors?.allowedMethods) {
+            res.setHeader('Access-Control-Allow-Methods', config.cors.allowedMethods.join(',').toUpperCase())
+        }
 
-    // handle responding to OPTIONS request for CORS globally
-    if (method == 'options' && config.cors) {
-        return res.status(200).send('')
-    }
+        if (config.cors?.allowedOrigin) {
+            res.setHeader('Access-Control-Allow-Origin', config.cors.allowedOrigin)
+        }
 
-    // handle caching
-    if (config.caching?.sharedCacheSeconds) {
-        res.setHeader(
-            'Cache-Control',
-            `max-age=0, s-maxage=${config.caching.sharedCacheSeconds}, stale-while-revalidate`,
-        )
-    }
+        // handle responding to OPTIONS request for CORS globally
+        if (method == 'options' && config.cors) {
+            return res.status(200).send('')
+        }
 
-    // grab the function that has been mapped to
-    // the user sent request method
-    const route = config.methods[method]
+        // handle caching
+        if (config.caching?.sharedCacheSeconds) {
+            res.setHeader(
+                'Cache-Control',
+                `max-age=0, s-maxage=${config.caching.sharedCacheSeconds}, stale-while-revalidate`,
+            )
+        }
 
-    // handle when no method has been defined
-    if (!route) return notFound(req, res)
+        // grab the function that has been mapped to
+        // the user sent request method
+        const route = config.methods[method]
 
-    // validate all the different parameters
-    if (await validate(req, res, route)) {
-        // finally execute the handler function
-        return route.handler(req, res)
+        // handle when no method has been defined
+        if (!route) return notFound(req, res)
+
+        // validate all the different parameters
+        if (await validate(req, res, route)) {
+            // finally execute the handler function
+            return route.handler(req, res)
+        }
     }
 }
