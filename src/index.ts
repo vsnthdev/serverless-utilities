@@ -3,5 +3,5 @@
  *  Created On 30 April 2023
  */
 
-export { notFound } from './notFound.js'
-export { func, type RouteConfig } from './function.js'
+export * from './function.js'
+export * from './notFound.js'

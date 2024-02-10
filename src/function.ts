@@ -43,6 +43,9 @@ export interface FunctionConfig {
     }
 }
 
+export type CORSConfig = FunctionConfig['cors']
+export type CachingConfig = FunctionConfig['caching']
+
 async function validate(req: VercelRequest, res: VercelResponse, route: RouteConfig) {
     // validate route
     if (route.validation) {
