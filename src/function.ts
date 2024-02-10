@@ -89,24 +89,26 @@ export function func(config: FunctionConfig) {
         // get current request method
         const method = req.method.toLowerCase() as RequestMethod
 
-        if (config.cors?.allowCredentials) {
-            res.setHeader('Access-Control-Allow-Credentials', 'true')
-        }
-
-        if (config.cors?.allowedHeaders) {
-            res.setHeader('Access-Control-Allow-Headers', config.cors.allowedHeaders.join(', '))
-        } else {
-            if (config.cors) {
-                res.setHeader('Access-Control-Allow-Headers', '')
+        if (config.cors) {
+            if (config.cors.allowCredentials == true) {
+                res.setHeader('Access-Control-Allow-Credentials', 'true')
             }
-        }
 
-        if (config.cors?.allowedMethods) {
-            res.setHeader('Access-Control-Allow-Methods', config.cors.allowedMethods.join(',').toUpperCase())
-        }
+            if (config.cors.allowedHeaders) {
+                res.setHeader('Access-Control-Allow-Headers', config.cors.allowedHeaders.join(', '))
+            } else {
+                if (config.cors) {
+                    res.setHeader('Access-Control-Allow-Headers', '')
+                }
+            }
 
-        if (config.cors?.allowedOrigin) {
-            res.setHeader('Access-Control-Allow-Origin', config.cors.allowedOrigin)
+            if (config.cors.allowedMethods) {
+                res.setHeader('Access-Control-Allow-Methods', config.cors.allowedMethods.join(',').toUpperCase())
+            }
+
+            if (config.cors.allowedOrigin) {
+                res.setHeader('Access-Control-Allow-Origin', config.cors.allowedOrigin)
+            }
         }
 
         // handle responding to OPTIONS request for CORS globally
