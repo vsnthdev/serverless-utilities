@@ -3,7 +3,7 @@
     "description": "Handy 🛠️ utility functions for Vercel ⚡ serverless functions.",
     "type": "module",
     "license": "zlib",
-    "version": "0.0.19",
+    "version": "0.0.20",
     "main": "dist/index.js",
     "bugs": "https://github.com/vsnthdev/serverless-utilities/issues",
     "homepage": "https://github.com/vsnthdev/serverless-utilities#readme",
