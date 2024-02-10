@@ -33,6 +33,7 @@ export interface FunctionConfig {
     }
     cors?: {
         allowedOrigin?: string
+        exposeHeaders?: string[]
         allowedHeaders?: string[]
         allowCredentials?: boolean
         allowedMethods?: RequestMethod[]
@@ -104,6 +105,10 @@ export function func(config: FunctionConfig) {
 
             if (config.cors.allowedOrigin) {
                 res.setHeader('Access-Control-Allow-Origin', config.cors.allowedOrigin)
+            }
+
+            if (config.cors.exposeHeaders) {
+                res.setHeader('Access-Control-Expose-Headers', config.cors.exposeHeaders.join(', '))
             }
         }
 
