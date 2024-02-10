@@ -94,6 +94,10 @@ export async function func(req: VercelRequest, res: VercelResponse, config: Func
 
     if (config.cors?.allowedHeaders) {
         res.setHeader('Access-Control-Allow-Headers', config.cors.allowedHeaders.join(', '))
+    } else {
+        if (config.cors) {
+            res.setHeader('Access-Control-Allow-Headers', '')
+        }
     }
 
     if (config.cors?.allowedMethods) {
