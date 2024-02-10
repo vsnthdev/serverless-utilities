@@ -11,7 +11,7 @@ import { VercelRequest, VercelResponse } from '@vercel/node'
 export type RequestMethod = "get" | "head" | "post" | "put" | "delete" | "connect" | "options" | "trace" | "patch"
 
 export interface RouteConfig {
-    handler: (req: VercelRequest, res: VercelResponse) => Promise<any>
+    handler: (req: VercelRequest, res: VercelResponse) => Promise<VercelResponse> | VercelResponse
     validation?: {
         params?: ZodObject<any>
         query?: ZodObject<any>
